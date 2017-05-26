@@ -1,3 +1,4 @@
+//FIREBASE DATABASE
 var config = {
     apiKey: "AIzaSyCWOSIGhQZ9E4xJ3f8HpZu8QsJiyCiD8f4",
     authDomain: "group-project-305bb.firebaseapp.com",
