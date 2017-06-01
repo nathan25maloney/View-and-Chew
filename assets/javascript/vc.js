@@ -1,3 +1,4 @@
+//FIREBASE DATABASE
 var config = {
     apiKey: "AIzaSyCWOSIGhQZ9E4xJ3f8HpZu8QsJiyCiD8f4",
     authDomain: "group-project-305bb.firebaseapp.com",
@@ -5,49 +6,47 @@ var config = {
     projectId: "group-project-305bb",
     storageBucket: "group-project-305bb.appspot.com",
     messagingSenderId: "898983937765"
- };
- firebase.initializeApp(config);
+};
+firebase.initializeApp(config);
 
 
 
- function eventSearch(whatArg,whenArg,whereArg) {
- 	var latLong = "";
- 	 var geocoder =  new google.maps.Geocoder();
-	    geocoder.geocode( { 'address': whereArg}, function(results, status) {
-	          if (status == google.maps.GeocoderStatus.OK) {
-	          	console.log(results[0].geometry.location.lat());
-	          	console.log(results[0].geometry.location.lng());
-	            latLong =results[0].geometry.location.lat()+"," +results[0].geometry.location.lng();
-	            console.log(latLong);
+function eventSearch(whatArg, whenArg, whereArg) {
+    var latLong = "";
+    var geocoder = new google.maps.Geocoder();
+    geocoder.geocode({ 'address': whereArg }, function(results, status) {
+        if (status == google.maps.GeocoderStatus.OK) {
+            console.log(results[0].geometry.location.lat());
+            console.log(results[0].geometry.location.lng());
+            latLong = results[0].geometry.location.lat() + "," + results[0].geometry.location.lng();
+            console.log(latLong);
 
 
-	            var latLongString = latLong.toString();  
-				console.log("the string of lat and long ",latLongString); 
-				var when = dateConverter(whenArg);
-				var what = whatArg;
-			 	var eventQueryURL = "https://app.ticketmaster.com/discovery/v2/events.json?latlong="+latLongString+"&endDateTime="+when +"T23:59:59Z&classificationName="+what+"&apikey=FPzWHn2ZYdKIpOOHgDw7rZMZpISVYwdG";
+            var latLongString = latLong.toString();
+            console.log("the string of lat and long ", latLongString);
+            var when = dateConverter(whenArg);
+            var what = whatArg;
+            var eventQueryURL = "https://app.ticketmaster.com/discovery/v2/events.json?latlong=" + latLongString + "&endDateTime=" + when + "T23:59:59Z&classificationName=" + what + "&apikey=FPzWHn2ZYdKIpOOHgDw7rZMZpISVYwdG";
+
+            $.ajax({
+                url: eventQueryURL,
+                method: "GET"
+            }).done(function(response) {
+                console.log("this is ticketmasters response ",response);
+				var results = response._embedded.events;
+				updatePage(results);
+            });
+        } else {
+            alert("Something got wrong " + status);
+        }
+    });
+   };
 
 
-
-			 	$.ajax({
-				    url: eventQueryURL,
-				    method: "GET"
-				}).done(function(response) { 
-					console.log("this is ticketmasters response ",response);
-					var results = response._embedded.events;
-					updatePage(results);
+	      
 
 
-				});
-
-
-	          } else {
-	            alert("Something went wrong " + status);
-	          }
-	        });
-
-
- }
+ 
 
  function dateConverter(startDate) {
  	var x = startDate.length;
@@ -101,6 +100,7 @@ function updatePage(argument) {
 	var priceMin;
 	var address;
 
+
 	for (var i = 0; i < argument.length; i++) {
 		var head = $("<div>");
 		head.attr("class","panel-body");
@@ -117,26 +117,25 @@ function updatePage(argument) {
 
 
 
-
  
 
 
-    $(document).ready(function() {
-    dateConverter("06/03/2017");
-   $("#addChar").on("click", function(e) {
-        e.preventDefault();
 
-       var a = $("#whatEvent").val().trim();
-        var b = $("#whenEvent").val().trim();
-        var c = $("#whereEvent").val().trim();
 
-       console.log(a, b, c);
+$(document).ready(function() {
+    
+    $("#addChar").on("click", function(e) {
+    	e.preventDefault();
 
-       eventSearch(a, b, c);
+    	var a = $("#whatEvent").val().trim();
+    	var b = $("#whenEvent").val().trim();
+    	var c = $("#whereEvent").val().trim();
 
-   });
+    	console.log(a, b, c);
+
+    	eventSearch(a, b, c);
+
 
 });
 
- 
-
+});
