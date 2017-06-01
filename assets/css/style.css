@@ -1,6 +1,24 @@
 #jumbo {
-	background-image: url("https://cdn.pixabay.com/photo/2012/04/25/00/26/gesture-41359_1280.png");
+	font-family: 'Oswald', sans-serif;
+	font-family: 'Fjalla One', sans-serif;
+	background-image: url(../images/1.png);
+	background-color: white;
 	background-size: 200px 200px;
+	background-position: 1% 75%;
 	background-repeat: no-repeat;
-;
+	border-style: double;
+	border-width: 2px;
+	border-color: black;
+	height: 200px;
 }
+
+body {
+	background-image: url(../images/vc_bg.png);
+	background-size: cover;
+}
+
+.panel {
+	color: black;
+}
+
+
