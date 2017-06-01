@@ -23,47 +23,120 @@ var config = {
 
 	            var latLongString = latLong.toString();  
 				console.log("the string of lat and long ",latLongString); 
-				var when = whenArg;
+				var when = dateConverter(whenArg);
 				var what = whatArg;
 			 	var eventQueryURL = "https://app.ticketmaster.com/discovery/v2/events.json?latlong="+latLongString+"&endDateTime="+when +"T23:59:59Z&classificationName="+what+"&apikey=FPzWHn2ZYdKIpOOHgDw7rZMZpISVYwdG";
+
+
 
 			 	$.ajax({
 				    url: eventQueryURL,
 				    method: "GET"
 				}).done(function(response) { 
 					console.log("this is ticketmasters response ",response);
+					var results = response._embedded.events;
+					updatePage(results);
+
 
 				});
+
+
 	          } else {
-	            alert("Something got wrong " + status);
+	            alert("Something went wrong " + status);
 	          }
 	        });
 
 
  }
+
+ function dateConverter(startDate) {
+ 	var x = startDate.length;
+ 	var date = startDate.toString();
+ 	
+ 	var res;
+ 	var month;
+ 	var day;
+ 	var year;
+
+ 	if (date.charAt(2)==="/" || date.charAt(1)==="/"){
+ 		res = date.split("/");
+ 		if(parseInt(res[0])<=12){
+ 			month = res[0];
+ 			day = res[1];
+ 			year = res[2];
+ 			if(month.length === 1){
+ 				month = "0"+month;
+ 			}
+ 			if(day.length ===1){
+ 				day = "0"+day;
+ 			}
+ 			if(parseInt(year) < 100) {
+ 				year = "20"+year;
+ 				
+ 			} 
+ 			
+ 			date = year+"-"+month+"-"+day;
+ 		}
+ 		
+ 	} else {
+ 		res = date.split("-");
+ 		year = res[0];
+ 		month = res[1];
+ 		day = res[2];
+ 		
+ 		date = month+"/"+day+"/"+year
+ 		
+ 		
+ 	}
+ 	return date;
+ }
+
+
+ 
+function updatePage(argument) {
+	var name;
+	var date;
+	var time;
+	var priceMax;
+	var priceMin;
+	var address;
+
+	for (var i = 0; i < argument.length; i++) {
+		var head = $("<div>");
+		head.attr("class","panel-body");
+		var title = $("<button>");
+		date = dateConverter(argument[i].dates.start.localDate);
+		console.log("date "+date);
+		title.text(argument[i].name+" appearing on "+date +" at "+ argument[i].dates.start.localTime+" at " +argument[i]._embedded.venues[0].address.line1 );
+		head.append(title);
+		$("#result-div").append(head);
+		
+
+	}
+}
+
+
+
+
  
 
 
+    $(document).ready(function() {
+    dateConverter("06/03/2017");
+   $("#addChar").on("click", function(e) {
+        e.preventDefault();
 
+       var a = $("#whatEvent").val().trim();
+        var b = $("#whenEvent").val().trim();
+        var c = $("#whereEvent").val().trim();
 
+       console.log(a, b, c);
 
- // $.ajax({
- //        url: yelpQueryURL,
- //        method: "GET"
- //    }).done(function(response) { 
+       eventSearch(a, b, c);
 
+   });
 
- //    });
-
-
-
-    $(document).ready( function(){
-    	eventSearch("music","2017-05-30","chandler, az");
-    	$("#search-btn").on("click", function(){
-
-		}); 
-
-    });
+});
 
  
 
