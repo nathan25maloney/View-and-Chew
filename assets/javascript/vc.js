@@ -104,11 +104,15 @@ function updatePage(argument) {
 	for (var i = 0; i < argument.length; i++) {
 		var head = $("<div>");
 		head.attr("class","panel-body");
-		var title = $("<button>");
+		var btn = $("<button>");
+		btn.attr("class","eventButton")
+
+		btn.attr("id",argument[i]._embedded.venues[0].location.latitude + " "+ argument[i]._embedded.venues[0].location.longitude);
 		date = dateConverter(argument[i].dates.start.localDate);
 		console.log("date "+date);
-		title.text(argument[i].name+" appearing on "+date +" at "+ argument[i].dates.start.localTime+" at " +argument[i]._embedded.venues[0].address.line1 );
-		head.append(title);
+
+		btn.text(argument[i].name+" appearing on "+date +" at "+ argument[i].dates.start.localTime+" in " +argument[i]._embedded.venues[0].city.name+" at "+argument[i]._embedded.venues[0].address.line1 );
+		head.append(btn);
 		$("#result-div").append(head);
 		
 

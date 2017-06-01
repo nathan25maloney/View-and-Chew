@@ -2,5 +2,9 @@
 	background-image: url("https://cdn.pixabay.com/photo/2012/04/25/00/26/gesture-41359_1280.png");
 	background-size: 200px 200px;
 	background-repeat: no-repeat;
-;
 }
+
+.eventButton {
+	min-width: 500px;
+}
+
