@@ -18,7 +18,7 @@
 	border-width: 2px;
 	border-color: black;
 	height: 200px;
-	opacity: 1.0;
+	
 }
 
 #target {
@@ -34,7 +34,6 @@ opacity: 0.6;
 	position: relative;
 	overflow: auto;
 	left: 300px;
-	/*margin-left: 200px;*/
 	background: #8C7853;
 	opacity: .9;
 	color: black;
@@ -44,16 +43,13 @@ opacity: 0.6;
 	min-width: 500px;
 }
 
-/* if I use Background image in HTML
-	.container img {
-	
-	position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: auto;
-    opacity: 0.6;
-	    }*/
+#yelpMap {
+
+}
+
+#ticketMasterResults {
+
+}
 
 footer, .push {
 	margin-top: 280px;
