@@ -30,7 +30,15 @@ function eventSearch(whatArg, whenArg, whereArg) {
 
             $.ajax({
                 url: eventQueryURL,
-                method: "GET"
+                method: "GET",
+                async: true,
+                datatype: "json",
+                success: function(json){
+                    console.log(json);
+                },
+                error: function(xhr, status, err){
+                    
+                }
             }).done(function(response) {
                 console.log("this is ticketmasters response ",response);
 				var results = response._embedded.events;
