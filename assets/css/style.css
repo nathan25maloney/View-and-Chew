@@ -1,3 +1,11 @@
+/*body {
+	
+	background-image: url(../images/vc_bg.png);
+	background-size: cover;
+	height: auto;
+	opacity: .5;
+}*/
+
 #jumbo {
 	font-family: 'Oswald', sans-serif;
 	font-family: 'Fjalla One', sans-serif;
@@ -10,19 +18,52 @@
 	border-width: 2px;
 	border-color: black;
 	height: 200px;
+	opacity: 1.0;
 }
 
-body {
-	background-image: url(../images/vc_bg.png);
-	background-size: cover;
-}
+#target {
+position: absolute;
+left: 0;
+top: 0;
+width: 100%;
+height: auto;
+opacity: 0.6;
+    }
 
-.panel {
+#mainSearch {
+	position: relative;
+	overflow: auto;
+	left: 300px;
+	/*margin-left: 200px;*/
+	background: #8C7853;
+	opacity: .9;
 	color: black;
 }
-
 
 .eventButton {
 	min-width: 500px;
 }
 
+/* if I use Background image in HTML
+	.container img {
+	
+	position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: auto;
+    opacity: 0.6;
+	    }*/
+
+footer, .push {
+	margin-top: 280px;
+	border-top: solid;
+	border-top-width: 10px;
+	border-color: black;
+	padding-top: 20px;
+	background-color: #8C7853;
+	color: white;
+	width: auto; 	
+	text-align: center;
+	height: 60px;
+	}
