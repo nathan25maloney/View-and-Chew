@@ -10,29 +10,32 @@ var config = {
 firebase.initializeApp(config);
 var database = firebase.database();
 
-var d = new Date();
+
 
 function testJS(whatArg, whenArg, whereArg) {
     var a = whatArg.toString();
     var b = whenArg.toString();
     var c = whereArg.toString();
+    
     // enter your own file path here!!
 
-        url = 'https://nathan25maloney.github.io/View-and-Chew/?what=' + encodeURIComponent(a)+'&when='+encodeURIComponent(b)+'&where='+encodeURIComponent(c);
+        // url = 'https://nathan25maloney.github.io/View-and-Chew/?what=' + encodeURIComponent(a)+'&when='+encodeURIComponent(b)+'&where='+encodeURIComponent(c);
+        url = 'file:///Users/saulpg/Desktop/Project/View-and-Chew/index-2.html?what=' + encodeURIComponent(a)+'&when='+encodeURIComponent(b)+'&where='+encodeURIComponent(c);
 
     document.location.href = url;
 }
 
-function testDate(a,b,c) {
-    console.log("testDate");
-    if (parseInt(d) < parseInt(b) ){
+// function testDate(a,b,c) {
+//     var d = new Date();
+//     console.log("testDate");
+//     if (parseInt(d) > parseInt(b) ){
 
-        testJS(a,b,c);
+//         testJS(a,b,c);
 
-        } else {
-            prompt("Please Enter in Valid Date");
-        }
-}
+//         } else {
+//             console.log("Please Enter in Valid Date");
+//         }
+// }
 
 
 $(document).ready(function() {
@@ -49,7 +52,7 @@ $(document).ready(function() {
     	console.log("button was clicked");
 
         //Function that checks date entered
-        testDate(a,b,c);
+        testJS(a,b,c);
         
         
     });
