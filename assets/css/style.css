@@ -39,9 +39,22 @@
 
 }
 
+<<<<<<< HEAD
 h1 {
     font-weight: 900;
     color: black;
+=======
+#mainSearch {
+	top: 80px;
+	font-size: 20px;
+	position: relative;
+	overflow: auto;
+	left: 300px;
+	background: #8C7853;
+	border: 1px solid #000;	
+	color: black;
+	z-index: 10000;
+>>>>>>> d3150be50f0db3c0141fc5a473ca1a93765a9e73
 }
 
 h3 {
