@@ -48,6 +48,18 @@ body {
 	min-width: 500px;
 }
 
+
+
+	.container img {
+	
+	position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: auto;
+    opacity: 0.6;
+	    }
+
 #yelpMap {
 	
 	width: 600px;
@@ -70,7 +82,7 @@ body {
 
 footer {
 	width: 100%;
-	margin-top: 450px;
+	margin-top: 320px;
 	border-top: solid;
 	border-top-width: 10px;
 	border-color: black;
