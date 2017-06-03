@@ -19,23 +19,23 @@ function testJS(whatArg, whenArg, whereArg) {
     
     // enter your own file path here!!
 
-        // url = 'https://nathan25maloney.github.io/View-and-Chew/?what=' + encodeURIComponent(a)+'&when='+encodeURIComponent(b)+'&where='+encodeURIComponent(c);
-        url = 'file:///Users/saulpg/Desktop/Project/View-and-Chew/index-2.html?what=' + encodeURIComponent(a)+'&when='+encodeURIComponent(b)+'&where='+encodeURIComponent(c);
+        url = 'https://nathan25maloney.github.io/View-and-Chew/?what=' + encodeURIComponent(a)+'&when='+encodeURIComponent(b)+'&where='+encodeURIComponent(c);
+        // url = 'file:///Users/saulpg/Desktop/Project/View-and-Chew/index-2.html?what=' + encodeURIComponent(a)+'&when='+encodeURIComponent(b)+'&where='+encodeURIComponent(c);
 
     document.location.href = url;
 }
 
-// function testDate(a,b,c) {
-//     var d = new Date();
-//     console.log("testDate");
-//     if (parseInt(d) > parseInt(b) ){
+function testDate(a,b,c) {
+    var d = new Date();
+    console.log("testDate");
+    if (parseInt(d) < parseInt(b) ){
 
-//         testJS(a,b,c);
+        testJS(a,b,c);
 
-//         } else {
-//             console.log("Please Enter in Valid Date");
-//         }
-// }
+        } else {
+            console.log("Please Enter in Valid Date");
+        }
+}
 
 
 $(document).ready(function() {
@@ -53,6 +53,7 @@ $(document).ready(function() {
 
         //Function that checks date entered
         testJS(a,b,c);
+        testDate(a,b,c);
         
         
     });
