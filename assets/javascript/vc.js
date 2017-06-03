@@ -16,7 +16,7 @@ function testJS(whatArg, whenArg, whereArg) {
     var b = whenArg.toString();
     var c = whereArg.toString();
     // enter your own file path here!!
-        url = 'file:///C:/Users/Nathan/Desktop/code/View-and-Chew/index-2.html?what=' + encodeURIComponent(a)+'&when='+encodeURIComponent(b)+'&where='+encodeURIComponent(c);
+        url = 'file:///Users/saulpg/Desktop/Project/View-and-Chew/index-2.html?what=' + encodeURIComponent(a)+'&when='+encodeURIComponent(b)+'&where='+encodeURIComponent(c);
 
     document.location.href = url;
 }
