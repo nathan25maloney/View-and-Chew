@@ -42,6 +42,7 @@ body {
 	background: #8C7853;
 	border: 1px solid #000;	
 	color: black;
+	z-index: 10000;
 }
 
 .eventButton {

@@ -23,31 +23,37 @@ function testJS(whatArg, whenArg, whereArg) {
     document.location.href = url;
 }
 
+function testDate(a,b,c) {
+    console.log("testDate");
+    if (parseInt(d) < parseInt(b) ){
+
+        testJS(a,b,c);
+
+        } else {
+            prompt("Please Enter in Valid Date");
+        }
+}
+
 
 $(document).ready(function() {
 	
     
     $("#addChar").on("click", function(e) {
+        console.log("hey I got clicked");
     	e.preventDefault();
 
     	var a = $("#whatEvent").val().trim();
     	var b = $("#whenEvent").val().trim();
     	var c = $("#whereEvent").val().trim();
 
-    	
+    	console.log("button was clicked");
 
         //Function that checks date entered
-        checkInfo(b) {
+        testDate(a,b,c);
+        
+        
+    });
 
-        if (parseInt(d) < parseInt(b) ){
-
-    	testJS(a,b,c);
-
-        } else {
-            prompt("Please Enter in Valid Date");
-        }
-    };
-});
     
 
 });
