@@ -30,16 +30,23 @@ function updatePage(argument) {
 window.onload = function () {
     var url = document.location.href,
         params = url.split('?')[1].split('&'),
-        data = {}, tmp;
+        data = {}, tmp, holder;
 
     for (var i = 0, l = params.length; i < l; i++) {
          tmp = params[i].split('=');
          data[i] = tmp[1];
          console.log("data " +data[i]);
     }
+
+    tmp = data[2].split('%20');
+    data[2]= tmp[0]+tmp[1];
+
+    
     eventSearch(data[0],data[1],data[2]);
     
 }
+
+
 
 function eventSearch(whatArg, whenArg, whereArg) {
     var latLong = "";
@@ -137,3 +144,14 @@ function eventSearch(whatArg, whenArg, whereArg) {
  	}
  	return date;
  }
+
+
+ //YELP CLIENT ID: MGCEQJQ38cNnywFdTjCotw
+
+  // var yelpURL = "https://api.yelp.com/v2/search?term=" + blah
+  // $.ajax({
+  //     url: yelpURL,
+  //     method: "GET"
+  // }).done(function(x){
+  //     console.log(TEST REQUEST FROM FIRST HTML PAGE HERE);
+  // });
