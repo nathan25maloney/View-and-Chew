@@ -1,10 +1,11 @@
-/*body {
+body {
 	
 	background-image: url(../images/vc_bg.png);
 	background-size: cover;
+	background-position: center;
 	height: auto;
 	opacity: .5;
-}*/
+}
 
 #jumbo {
 	font-family: 'Oswald', sans-serif;
@@ -18,24 +19,28 @@
 	border-width: 2px;
 	border-color: black;
 	height: 200px;
+	color: black;
+	opacity: .9;
 	
 }
 
-#target {
-position: absolute;
-left: 0;
-top: 0;
-width: 100%;
-height: auto;
-opacity: 0.6;
-    }
+#background-pic {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: auto;
+	opacity: 0.6;
+}
 
 #mainSearch {
+	top: 80px;
+	font-size: 20px;
 	position: relative;
 	overflow: auto;
 	left: 300px;
 	background: #8C7853;
-	opacity: .9;
+	border: 1px solid #000;	
 	color: black;
 }
 
@@ -44,22 +49,34 @@ opacity: 0.6;
 }
 
 #yelpMap {
-
+	
+	width: 600px;
+	position: absolute;
+	overflow: auto;
+	left: 600px;
+	background: #8C7853;
+	float: right;
 }
 
 #ticketMasterResults {
+	
+	position: absolute;
+	overflow: auto;
+	width: 500px;
+	background: #8C7853;
+	float: left;
 
 }
 
-footer, .push {
-	margin-top: 280px;
+footer {
+	width: 100%;
+	margin-top: 450px;
 	border-top: solid;
 	border-top-width: 10px;
 	border-color: black;
 	padding-top: 20px;
 	background-color: #8C7853;
-	color: white;
-	width: auto; 	
+	color: white; 	
 	text-align: center;
 	height: 60px;
 	}
