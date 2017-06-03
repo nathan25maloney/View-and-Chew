@@ -10,6 +10,7 @@ var config = {
 firebase.initializeApp(config);
 var database = firebase.database();
 
+var d = new Date();
 
 function testJS(whatArg, whenArg, whereArg) {
     var a = whatArg.toString();
@@ -17,7 +18,7 @@ function testJS(whatArg, whenArg, whereArg) {
     var c = whereArg.toString();
     // enter your own file path here!!
 
-        url = 'file:///Users/saulpg/Desktop/Project/View-and-Chew/index-2.html?what=' + encodeURIComponent(a)+'&when='+encodeURIComponent(b)+'&where='+encodeURIComponent(c);
+        url = 'https://nathan25maloney.github.io/View-and-Chew/?what=' + encodeURIComponent(a)+'&when='+encodeURIComponent(b)+'&where='+encodeURIComponent(c);
 
     document.location.href = url;
 }
@@ -35,9 +36,17 @@ $(document).ready(function() {
 
     	
 
+        //Function that checks date entered
+        checkInfo(b) {
+
+        if (parseInt(d) < parseInt(b) ){
+
     	testJS(a,b,c);
 
-
+        } else {
+            prompt("Please Enter in Valid Date");
+        }
+    };
 });
     
 
