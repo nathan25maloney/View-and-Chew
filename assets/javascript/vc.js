@@ -154,3 +154,20 @@ $(document).ready(function() {
 });
 
 });
+
+
+
+
+
+
+  //YELP CLIENT ID: MGCEQJQ38cNnywFdTjCotw
+
+  // var yelpURL = "https://api.yelp.com/v2/search?term=" + blah
+  // $.ajax({
+  //     url: yelpURL,
+  //     method: "GET"
+  // }).done(function(x){
+  //     console.log(TEST REQUEST FROM FIRST HTML PAGE HERE);
+  // });
+
+
