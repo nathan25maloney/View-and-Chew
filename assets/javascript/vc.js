@@ -8,50 +8,21 @@ var config = {
     messagingSenderId: "898983937765"
 };
 firebase.initializeApp(config);
+var database = firebase.database();
+
+
+function testJS(whatArg, whenArg, whereArg) {
+    var a = whatArg.toString();
+    var b = whenArg.toString();
+    var c = whereArg.toString();
+    // enter your own file path here!!
+        url = 'file:///C:/Users/Nathan/Desktop/code/View-and-Chew/index-2.html?what=' + encodeURIComponent(a)+'&when='+encodeURIComponent(b)+'&where='+encodeURIComponent(c);
+
+    document.location.href = url;
+}
 
 
 
-function eventSearch(whatArg, whenArg, whereArg) {
-    var latLong = "";
-    var geocoder = new google.maps.Geocoder();
-    geocoder.geocode({ 'address': whereArg }, function(results, status) {
-        if (status == google.maps.GeocoderStatus.OK) {
-            console.log(results[0].geometry.location.lat());
-            console.log(results[0].geometry.location.lng());
-            latLong = results[0].geometry.location.lat() + "," + results[0].geometry.location.lng();
-            console.log(latLong);
-
-
-            var latLongString = latLong.toString();
-            console.log("the string of lat and long ", latLongString);
-            var when = dateConverter(whenArg);
-            var what = whatArg;
-            var eventQueryURL = "https://app.ticketmaster.com/discovery/v2/events.json?latlong=" + latLongString + "&endDateTime=" + when + "T23:59:59Z&classificationName=" + what + "&apikey=FPzWHn2ZYdKIpOOHgDw7rZMZpISVYwdG";
-
-            $.ajax({
-                url: eventQueryURL,
-                method: "GET",
-                async:true,
-			    dataType: "json",
-			    success: function(json) {
-			              console.log(json);
-			              // Parse the response.
-			              // Do other things.
-			           },
-			    error: function(xhr, status, err) {
-			              // This time, we do not end up here!
-			           }
-
-            }).done(function(response) {
-                console.log("this is ticketmasters response ",response);
-				var results = response._embedded.events;
-				updatePage(results);
-            });
-        } else {
-            alert("Something got wrong " + status);
-        }
-    });
-   };
 
 
 	      
@@ -138,6 +109,7 @@ function updatePage(argument) {
 
 
 $(document).ready(function() {
+	
     
     $("#addChar").on("click", function(e) {
     	e.preventDefault();
@@ -146,11 +118,12 @@ $(document).ready(function() {
     	var b = $("#whenEvent").val().trim();
     	var c = $("#whereEvent").val().trim();
 
-    	console.log(a, b, c);
+    	
 
-    	eventSearch(a, b, c);
+    	testJS(a,b,c);
 
 
 });
+    
 
 });
