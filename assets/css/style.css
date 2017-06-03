@@ -43,6 +43,18 @@ opacity: 0.6;
 	min-width: 500px;
 }
 
+
+
+	.container img {
+	
+	position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: auto;
+    opacity: 0.6;
+	    }
+
 #yelpMap {
 
 }
@@ -50,6 +62,7 @@ opacity: 0.6;
 #ticketMasterResults {
 
 }
+
 
 footer, .push {
 	margin-top: 280px;
