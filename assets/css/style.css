@@ -1,38 +1,49 @@
-body {
+/*body {
 	
 	background-image: url(../images/vc_bg.png);
 	background-size: cover;
 	background-position: center;
 	height: auto;
 	opacity: .5;
-}
+	z-index: -1;
+}*/
 
 #jumbo {
-	font-family: 'Oswald', sans-serif;
-	font-family: 'Fjalla One', sans-serif;
-	background-image: url(../images/1.png);
-	background-color: white;
-	background-size: 200px 200px;
-	background-position: 1% 75%;
-	background-repeat: no-repeat;
-	border-style: double;
-	border-width: 2px;
-	border-color: black;
-	height: 200px;
-	color: black;
-	opacity: .9;
-	
+    font-family: 'Oswald', sans-serif;
+    font-family: 'Fjalla One', sans-serif;
+    font-weight: 900;
+    background-image: url(../images/1.png);
+    background-color: white;
+    background-size: 180px 180px;
+    background-position: 1% 75%;
+    background-repeat: no-repeat;
+    border-style: double;
+    border-width: 2px;
+    border-color: black;
+    height: 200px;
+    color: black;
+    opacity: .6;
+ 
 }
 
 #background-pic {
-	position: absolute;
-	left: 0;
-	top: 0;
-	width: 100%;
-	height: auto;
-	opacity: 0.6;
+  min-height: 100%;
+  min-width: 1024px;
+  width: 100%;
+  height: auto;
+  position: fixed;
+  top: 0;
+  left: 0;
+  opacity: .8;
+  z-index: -1;
+
 }
 
+<<<<<<< HEAD
+h1 {
+    font-weight: 900;
+    color: black;
+=======
 #mainSearch {
 	top: 80px;
 	font-size: 20px;
@@ -43,53 +54,71 @@ body {
 	border: 1px solid #000;	
 	color: black;
 	z-index: 10000;
+>>>>>>> d3150be50f0db3c0141fc5a473ca1a93765a9e73
+}
+
+h3 {
+	 font-weight: 900;
+}
+
+#whatEvent {
+    opacity: .8;
+}
+
+#whenEvent {
+    opacity: .8;
+}
+
+#whereEvent {
+    opacity: .8;
+}
+
+#mainSearch {
+    top: 80px;
+    font-size: 20px;
+    position: relative;
+    overflow: auto;
+    left: 300px;
+    background: #8C7853;
+    border: 1px solid #000;
+    opacity: .9;
 }
 
 .eventButton {
-	min-width: 500px;
+    min-width: 500px;
 }
 
-
-
-	.container img {
-	
-	position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: auto;
-    opacity: 0.6;
-	    }
-
 #yelpMap {
-	
-	width: 600px;
-	position: absolute;
-	overflow: auto;
-	left: 600px;
-	background: #8C7853;
-	float: right;
+    width: 600px;
+    position: absolute;
+    overflow: auto;
+    left: 600px;
+    height: 700px;
+    background: #8C7853;
+    float: right;
+    opacity: .9;
 }
 
 #ticketMasterResults {
-	
-	position: absolute;
-	overflow: auto;
-	width: 500px;
-	background: #8C7853;
-	float: left;
-
+    position: absolute;
+    overflow: auto;
+    width: 500px;
+    height: 700px;
+    background: #8C7853;
+    float: left;
+    opacity: .9;
 }
 
 footer {
-	width: 100%;
-	margin-top: 320px;
-	border-top: solid;
-	border-top-width: 10px;
-	border-color: black;
-	padding-top: 20px;
-	background-color: #8C7853;
-	color: white; 	
-	text-align: center;
-	height: 60px;
-	}
+    width: 100%;
+    margin-top: 760px;
+    border-top: solid;
+    border-top-width: 10px;
+    border-color: black;
+    padding-top: 20px;
+    background-color: #8C7853;
+    color: white;
+    text-align: center;
+    height: 60px;
+    opacity: .9;
+}
