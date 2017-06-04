@@ -169,7 +169,7 @@ function eventSearch(whatArg, whenArg, whereArg) {
   function initMap(mapLat,mapLng) {
   		console.log("mapLat = "+mapLat+" mapLng = "+mapLng);
         var map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 13,
+          zoom: 14,
 
           center: {lat: 33.3031475, lng: -111.8426259}
         });
