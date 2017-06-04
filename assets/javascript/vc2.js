@@ -22,7 +22,11 @@ function updatePage(argument,what) {
 		btn.on("click", function(e) {
 	    	
 	    	e.preventDefault();
-	    	yelpFunc(this.id);   	
+	    	var holder;
+	    	holder = this.id.split(" ");
+	    	console.log(parseFloat(holder[0]));
+	    	initMap(parseFloat(holder[0]),parseFloat(holder[1])); 
+
 
 		});
 		$("#result-div").append(btn);
@@ -35,7 +39,7 @@ function updatePage(argument,what) {
 window.onload = function () {
     var url = document.location.href,
         params = url.split('?')[1].split('&'),
-        data = {}, tmp, holder;
+        data = {}, tmp;
 
     for (var i = 0, l = params.length; i < l; i++) {
          tmp = params[i].split('=');
@@ -161,16 +165,27 @@ function eventSearch(whatArg, whenArg, whereArg) {
   //     console.log(TEST REQUEST FROM FIRST HTML PAGE HERE);
   // });
 
-  function yelpFunc(id) {
-            var location = id;
-	    	var yelpURL = "https://api.yelp.com/v2/searchterm=food&ll="+location;
 
-			  $.ajax({
-			      url: yelpURL,
-			      method: "GET"
-			  }).done(function(x){
-			      console.log("TEST REQUEST FROM FIRST HTML PAGE HERE"+x);
-			  });
-            }
+  function initMap(mapLat,mapLng) {
+  		console.log("mapLat = "+mapLat+" mapLng = "+mapLng);
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 13,
+
+          center: {lat: 33.3031475, lng: -111.8426259}
+        });
+
+        if(mapLat === undefined || mapLng === undefined){
+
+        } else {
+	        var infoWindow = new google.maps.InfoWindow;
+	        pos = {lat: mapLat, lng: mapLng}
+	        infoWindow.setPosition(pos);
+	        infoWindow.setContent('Location of the venue.');
+	        infoWindow.open(map);
+	        map.setCenter(pos);
+	    }
+      }
+
+  
 
   

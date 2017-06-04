@@ -14,8 +14,8 @@
     <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
     <script src="https://www.gstatic.com/firebasejs/4.0.0/firebase.js"></script>
     <script src="assets/javascript/vc2.js" type="text/javascript"></script>
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyApqn8_Is2nTmy_U1own9W36OK4PA1klLs"
-            type="text/javascript"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyApqn8_Is2nTmy_U1own9W36OK4PA1klLs&callback=initMap&language=en"
+    async defer></script>
 </head>
 
 <body>
@@ -35,7 +35,7 @@
                         <h3 class="panel-title">Look Here to find your Restaurant!</h3>
                     </div>
                     <div class="panel-body">
-                        *map*
+                        <div id="map"></div>
                         <!-- Add Padding bottom in CSS-->
                     </div>
                 </div>

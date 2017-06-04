@@ -8,6 +8,10 @@
 	z-index: -1;
 }*/
 
+#map {
+        height: 400px;
+      }
+
 #jumbo {
     font-family: 'Oswald', sans-serif;
     font-family: 'Fjalla One', sans-serif;
