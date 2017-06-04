@@ -10,7 +10,7 @@ var config = {
 firebase.initializeApp(config);
 var database = firebase.database();
 
-
+var isCorrectDate = false;
 
 function testJS(whatArg, whenArg, whereArg) {
     var a = whatArg.toString();
@@ -29,8 +29,10 @@ function testJS(whatArg, whenArg, whereArg) {
 
 function testDate(a,b,c) {
     var d = new Date();
-    console.log("testDate");
-    if (parseInt(d) < parseInt(b) ){
+    var e = new Date(b);
+    console.log("Today's date to int: "+d+".  Enterred date to Int: "+e);
+
+    if (d.getTime() < e.getTime() ){
 
         testJS(a,b,c);
 
@@ -42,7 +44,8 @@ function testDate(a,b,c) {
 
 $(document).ready(function() {
 	
-    
+
+
     $("#addChar").on("click", function(e) {
         console.log("hey I got clicked");
     	e.preventDefault();
@@ -53,7 +56,7 @@ $(document).ready(function() {
     	
     	
     	
-    	testJS(a,b,c);
+    	testDate(a,b,c);
     	
 
 });
