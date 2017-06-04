@@ -1,4 +1,8 @@
-
+var mapLat;
+var mapLng;
+var map;
+var infowindow;
+var location;
 
 function updatePage(argument,what) {
 	var name;
@@ -25,7 +29,10 @@ function updatePage(argument,what) {
 	    	var holder;
 	    	holder = this.id.split(" ");
 	    	console.log(parseFloat(holder[0]));
-	    	initMap(parseFloat(holder[0]),parseFloat(holder[1])); 
+	    	mapLat = parseFloat(holder[0]);
+	    	mapLng = parseFloat(holder[1]);
+	    	
+	    	initMap(mapLat,mapLng); 
 
 
 		});
@@ -155,21 +162,13 @@ function eventSearch(whatArg, whenArg, whereArg) {
  }
 
 
- //YELP CLIENT ID: MGCEQJQ38cNnywFdTjCotw
 
-  // var yelpURL = "https://api.yelp.com/v2/search?term=" + blah
-  // $.ajax({
-  //     url: yelpURL,
-  //     method: "GET"
-  // }).done(function(x){
-  //     console.log(TEST REQUEST FROM FIRST HTML PAGE HERE);
-  // });
 
 
   function initMap(mapLat,mapLng) {
   		console.log("mapLat = "+mapLat+" mapLng = "+mapLng);
-        var map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 14,
+        map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 15,
 
           center: {lat: 33.3031475, lng: -111.8426259}
         });
@@ -177,15 +176,92 @@ function eventSearch(whatArg, whenArg, whereArg) {
         if(mapLat === undefined || mapLng === undefined){
 
         } else {
-	        var infoWindow = new google.maps.InfoWindow;
+	        infoWindow = new google.maps.InfoWindow;
 	        pos = {lat: mapLat, lng: mapLng}
 	        infoWindow.setPosition(pos);
 	        infoWindow.setContent('Location of the venue.');
 	        infoWindow.open(map);
 	        map.setCenter(pos);
-	    }
+
+	        
+	        console.log("step1");
+
+	        
+	        var request = {
+	          location: pos,
+	          radius: '500',
+	          types: ['restaurant']
+	        };
+	        service = new google.maps.places.PlacesService(map);
+	        service.nearbySearch(request, callback);
+		}
+      }
+function callback(results, status) {
+		console.log("step2");
+        if (status === google.maps.places.PlacesServiceStatus.OK) {
+          console.log(results);
+          for (var i = 0; i < results.length; i++) {
+          	
+            createMarker(results[i],results[i].name);
+            
+          }
+        }
       }
 
+function createMarker(place,name) {
+        var placeLoc = place.geometry.location;
+        console.log("Marker Location: "+place.geometry.location+" Marker Name: "+name+typeof(name));
+        var marker = new google.maps.Marker({
+          map: map,
+          position: placeLoc
+
+        });
+        infowindow = new google.maps.InfoWindow;
+        
+        google.maps.event.addListener(marker, 'click', function() {
+          
+          infowindow.setContent(name);
+          infowindow.open(map, this);
+        });
+      }      
   
 
-  
+  //     function initMap(mapLat,mapLng) {
+  //       location = {lat: 33.3031475, lng: -111.8426259};
+	 //    location = {lat: mapLat, lng: mapLng};
+
+  //       map = new google.maps.Map(document.getElementById('map'), {
+  //         center: location,
+  //         zoom: 15
+  //       });
+
+  //       infowindow = new google.maps.InfoWindow();
+  //       var service = new google.maps.places.PlacesService(map);
+  //       service.nearbySearch({
+  //         location: location,
+  //         radius: 500,
+  //         type: ['restaurant']
+  //       }, callback);
+  //     }
+
+  //     function callback(results, status) {
+  //       if (status === google.maps.places.PlacesServiceStatus.OK) {
+  //         for (var i = 0; i < results.length; i++) {
+  //           createMarker(results[i]);
+  //         }
+  //       }
+  //     }
+
+  //     function createMarker(place) {
+  //       var placeLoc = place.geometry.location;
+  //       var marker = new google.maps.Marker({
+  //         map: map,
+  //         position: place.geometry.location
+  //       });
+
+  //       google.maps.event.addListener(marker, 'click', function() {
+  //         infowindow.setContent(place.name);
+  //         infowindow.open(map, this);
+  //       });
+  //     }
+  // 
