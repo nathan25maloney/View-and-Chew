@@ -11,12 +11,14 @@ firebase.initializeApp(config);
 var database = firebase.database();
 
 
+
 function testJS(whatArg, whenArg, whereArg) {
     var a = whatArg.toString();
     var b = whenArg.toString();
     var c = whereArg.toString();
     // enter your own file path here!!
-        url = 'https://nathan25maloney.github.io/View-and-Chew/index-2.html?what=' + encodeURIComponent(a)+'&when='+encodeURIComponent(b)+'&where='+encodeURIComponent(c);
+        // url = 'https://nathan25maloney.github.io/View-and-Chew/index-2.html?what=' + encodeURIComponent(a)+'&when='+encodeURIComponent(b)+'&where='+encodeURIComponent(c);
+        url = 'file:///C:/Users/Nathan/Desktop/code/View-and-Chew/index-2.html?what=' + encodeURIComponent(a)+'&when='+encodeURIComponent(b)+'&where='+encodeURIComponent(c);
 
     document.location.href = url;
 }
@@ -31,11 +33,11 @@ $(document).ready(function() {
     	var a = $("#whatEvent").val().trim();
     	var b = $("#whenEvent").val().trim();
     	var c = $("#whereEvent").val().trim();
-
     	
-
+    	
+    	
     	testJS(a,b,c);
-
+    	
 
 });
     

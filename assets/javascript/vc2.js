@@ -1,6 +1,6 @@
 
 
-function updatePage(argument) {
+function updatePage(argument,what) {
 	var name;
 	var date;
 	var time;
@@ -10,18 +10,23 @@ function updatePage(argument) {
 
 
 	for (var i = 0; i < argument.length; i++) {
-		var head = $("<div>");
-		head.attr("class","panel-body");
+		
 		var btn = $("<button>");
 		btn.attr("class","eventButton")
 
 		btn.attr("id",argument[i]._embedded.venues[0].location.latitude + " "+ argument[i]._embedded.venues[0].location.longitude);
 		date = dateConverter(argument[i].dates.start.localDate);
-		console.log("date "+date);
+		
 
-		btn.text(argument[i].name+" appearing on "+date +" at "+ argument[i].dates.start.localTime+" in " +argument[i]._embedded.venues[0].city.name+" at "+argument[i]._embedded.venues[0].address.line1 );
-		head.append(btn);
-		$("#result-div").append(head);
+		btn.html(argument[i].name+"<br>"+ "Appearing on " + date +" at "+ argument[i].dates.start.localTime+"<br>"+"Location: " +argument[i]._embedded.venues[0].city.name+" at "+argument[i]._embedded.venues[0].address.line1 );
+		btn.on("click", function(e) {
+	    	
+	    	e.preventDefault();
+	    	yelpFunc(this.id);   	
+
+		});
+		$("#result-div").append(btn);
+
 		
 
 	}
@@ -91,7 +96,7 @@ function eventSearch(whatArg, whenArg, whereArg) {
 
             });
         } else {
-            alert("Something got wrong " + status);
+            alert("Something went wrong " + status);
         }
     });
    };
@@ -155,3 +160,17 @@ function eventSearch(whatArg, whenArg, whereArg) {
   // }).done(function(x){
   //     console.log(TEST REQUEST FROM FIRST HTML PAGE HERE);
   // });
+
+  function yelpFunc(id) {
+            var location = id;
+	    	var yelpURL = "https://api.yelp.com/v2/searchterm=food&ll="+location;
+
+			  $.ajax({
+			      url: yelpURL,
+			      method: "GET"
+			  }).done(function(x){
+			      console.log("TEST REQUEST FROM FIRST HTML PAGE HERE"+x);
+			  });
+            }
+
+  
