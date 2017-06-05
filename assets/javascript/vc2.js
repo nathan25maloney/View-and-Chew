@@ -175,12 +175,15 @@ function eventSearch(whatArg, whenArg, whereArg) {
 
         if(mapLat === undefined || mapLng === undefined){
 
-        } else {
-	        infoWindow = new google.maps.InfoWindow;
-	        pos = {lat: mapLat, lng: mapLng}
-	        infoWindow.setPosition(pos);
-	        infoWindow.setContent('Location of the venue.');
-	        infoWindow.open(map);
+        }else {
+	        
+	        pos = {lat: mapLat, lng: mapLng};
+	        var marker = new google.maps.Marker({
+	          map: map,
+	          position: pos,
+	          title: 'Hello World!'
+	        });
+	        
 	        map.setCenter(pos);
 
 	        
@@ -189,79 +192,111 @@ function eventSearch(whatArg, whenArg, whereArg) {
 	        
 	        var request = {
 	          location: pos,
-	          radius: '500',
+	          radius: '1500',
 	          types: ['restaurant']
 	        };
 	        service = new google.maps.places.PlacesService(map);
 	        service.nearbySearch(request, callback);
+	        var clickHandler = new ClickEventHandler(map, pos);
 		}
       }
+
+
 function callback(results, status) {
 		console.log("step2");
         if (status === google.maps.places.PlacesServiceStatus.OK) {
           console.log(results);
           for (var i = 0; i < results.length; i++) {
           	
-            createMarker(results[i],results[i].name);
-            
+            	createMarker(results[i],results[i].name, i*400);
+           
           }
         }
       }
 
-function createMarker(place,name) {
-        var placeLoc = place.geometry.location;
-        console.log("Marker Location: "+place.geometry.location+" Marker Name: "+name+typeof(name));
-        var marker = new google.maps.Marker({
-          map: map,
-          position: placeLoc
 
+function createMarker(place,name,timeout) {
+	setTimeout(function() {
+		var placeLoc = place.geometry.location;
+        
+        var marker = new google.maps.Marker({
+
+          map: map,
+          position: placeLoc,
+          animation: google.maps.Animation.DROP
         });
         infowindow = new google.maps.InfoWindow;
-        
+
         google.maps.event.addListener(marker, 'click', function() {
           
-          infowindow.setContent(name);
-          infowindow.open(map, this);
+          // infowindow.setContent(name);
+          // infowindow.open(map, this);
         });
+	}, timeout);
+	
+        
+
+
       }      
   
 
-  //     function initMap(mapLat,mapLng) {
-  //       location = {lat: 33.3031475, lng: -111.8426259};
-	 //    location = {lat: mapLat, lng: mapLng};
+ var ClickEventHandler = function(map, origin) {
+        this.origin = origin;
+        this.map = map;
+        this.directionsService = new google.maps.DirectionsService;
+        this.directionsDisplay = new google.maps.DirectionsRenderer;
+        this.directionsDisplay.setMap(map);
+        this.placesService = new google.maps.places.PlacesService(map);
+        this.infowindow = new google.maps.InfoWindow;
+        this.infowindowContent = document.getElementById('infowindow-content');
+        this.infowindow.setContent(this.infowindowContent);
 
-  //       map = new google.maps.Map(document.getElementById('map'), {
-  //         center: location,
-  //         zoom: 15
-  //       });
+        // Listen for clicks on the map.
+        this.map.addListener('click', this.handleClick.bind(this));
+      };
 
-  //       infowindow = new google.maps.InfoWindow();
-  //       var service = new google.maps.places.PlacesService(map);
-  //       service.nearbySearch({
-  //         location: location,
-  //         radius: 500,
-  //         type: ['restaurant']
-  //       }, callback);
-  //     }
+ ClickEventHandler.prototype.handleClick = function(event) {
+        console.log('You clicked on: ' + event.latLng);
+        // If the event has a placeId, use it.
+        if (event.placeId) {
+          console.log('You clicked on place:' + event.placeId);
 
-  //     function callback(results, status) {
-  //       if (status === google.maps.places.PlacesServiceStatus.OK) {
-  //         for (var i = 0; i < results.length; i++) {
-  //           createMarker(results[i]);
-  //         }
-  //       }
-  //     }
+          // Calling e.stop() on the event prevents the default info window from
+          // showing.
+          // If you call stop here when there is no placeId you will prevent some
+          // other map click event handlers from receiving the event.
+          event.stop();
+          this.calculateAndDisplayRoute(event.placeId);
+          this.getPlaceInformation(event.placeId);
+        }
+      };      
 
-  //     function createMarker(place) {
-  //       var placeLoc = place.geometry.location;
-  //       var marker = new google.maps.Marker({
-  //         map: map,
-  //         position: place.geometry.location
-  //       });
-
-  //       google.maps.event.addListener(marker, 'click', function() {
-  //         infowindow.setContent(place.name);
-  //         infowindow.open(map, this);
-  //       });
-  //     }
-  // 
+ClickEventHandler.prototype.calculateAndDisplayRoute = function(placeId) {
+        var me = this;
+        this.directionsService.route({
+          origin: this.origin,
+          destination: {placeId: placeId},
+          travelMode: 'WALKING'
+        }, function(response, status) {
+          if (status === 'OK') {
+            me.directionsDisplay.setDirections(response);
+          } else {
+            window.alert('Directions request failed due to ' + status);
+          }
+        });
+      };
+  ClickEventHandler.prototype.getPlaceInformation = function(placeId) {
+        var me = this;
+        this.placesService.getDetails({placeId: placeId}, function(place, status) {
+          if (status === 'OK') {
+            me.infowindow.close();
+            me.infowindow.setPosition(place.geometry.location);
+            me.infowindowContent.children['place-icon'].src = place.icon;
+            me.infowindowContent.children['place-name'].textContent = place.name;
+            
+            me.infowindowContent.children['place-address'].textContent =
+                place.formatted_address;
+            me.infowindow.open(me.map);
+          }
+        });
+      };     
