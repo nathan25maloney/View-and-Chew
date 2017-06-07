@@ -43,12 +43,13 @@
 
 }
 
-<<<<<<< HEAD
+
+
 h1 {
     font-weight: 900;
     color: black;
-=======
-#mainSearch {
+/*
+#mainsearch {
 	top: 80px;
 	font-size: 20px;
 	position: relative;
@@ -58,11 +59,13 @@ h1 {
 	border: 1px solid #000;	
 	color: black;
 	z-index: 10000;
->>>>>>> d3150be50f0db3c0141fc5a473ca1a93765a9e73
+
 }
+*/
+
 
 h3 {
-	 font-weight: 900;
+	font-weight: 900;
 }
 
 #whatEvent {
@@ -113,7 +116,11 @@ h3 {
     opacity: .9;
 }
 
-footer {
+.container {
+	min-height: calc(100vh - 70px);
+}
+
+#footer {
     width: 100%;
     margin-top: 760px;
     border-top: solid;
@@ -125,4 +132,5 @@ footer {
     text-align: center;
     height: 60px;
     opacity: .9;
+    height: 50px;
 }
