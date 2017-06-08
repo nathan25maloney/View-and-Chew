@@ -23,16 +23,16 @@ function testJS(whatArg, whenArg, whereArg) {
     document.location.href = url;
 }
 
-function testDate(a,b,c) {
-    console.log("testDate");
-    if (parseInt(d) < parseInt(b) ){
+// function testDate(a,b,c) {
+//     console.log("testDate");
+//     if (parseInt(d) < parseInt(b) ){
 
-        testJS(a,b,c);
+//         testJS(a,b,c);
 
-        } else {
-            prompt("Please Enter in Valid Date");
-        }
-}
+//         } else {
+//             prompt("Please Enter in Valid Date");
+//         }
+// }
 
 
 $(document).ready(function() {
@@ -49,7 +49,7 @@ $(document).ready(function() {
     	console.log("button was clicked");
 
         //Function that checks date entered
-        testDate(a,b,c);
+        testJS(a,b,c);
         
         
     });
