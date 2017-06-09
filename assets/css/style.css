@@ -83,10 +83,12 @@ h3 {
     background: #8C7853;
     border: 1px solid #000;
     opacity: .9;
+    z-index: 10;
 }
 
 .eventButton {
     min-width: 500px;
+    z-index: 10000;
 }
 
 #yelpMap {
@@ -113,7 +115,7 @@ h3 {
 footer {
     width: 100%;
     border-top: solid;
-    margin-top: 300px;
+    margin-top: 760px;
     border-top-width: 10px;
     border-color: black;
     padding-top: 20px;
