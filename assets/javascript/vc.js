@@ -10,34 +10,55 @@ var config = {
 firebase.initializeApp(config);
 var database = firebase.database();
 
-var d = new Date();
+var isCorrectDate = false;
 
 function testJS(whatArg, whenArg, whereArg) {
     var a = whatArg.toString();
     var b = whenArg.toString();
     var c = whereArg.toString();
+    
     // enter your own file path here!!
 
-        url = 'https://nathan25maloney.github.io/View-and-Chew/?what=' + encodeURIComponent(a)+'&when='+encodeURIComponent(b)+'&where='+encodeURIComponent(c);
+        url = 'https://nathan25maloney.github.io/View-and-Chew/index-2.html?what=' + encodeURIComponent(a)+'&when='+encodeURIComponent(b)+'&where='+encodeURIComponent(c);
+        // url = 'file:///C:/Users/Nathan/Desktop/code/View-and-Chew/index-2.html?what=' + encodeURIComponent(a)+'&when='+encodeURIComponent(b)+'&where='+encodeURIComponent(c);
+        // url = 'file:///Users/saulpg/Desktop/Project/View-and-Chew/index-2.html?what=' + encodeURIComponent(a)+'&when='+encodeURIComponent(b)+'&where='+encodeURIComponent(c);
+
 
     document.location.href = url;
 }
 
+<<<<<<< HEAD
 // function testDate(a,b,c) {
 //     console.log("testDate");
 //     if (parseInt(d) < parseInt(b) ){
+=======
+function testDate(a,b,c) {
+    var d = new Date();
+    var e = new Date(b);
+    console.log("Today's date to int: "+d+".  Enterred date to Int: "+e);
+
+    if (d.getTime() < e.getTime() ){
+>>>>>>> 088eb171b02a01466a9259b76bd9c62de0e55c8b
 
 //         testJS(a,b,c);
 
+<<<<<<< HEAD
 //         } else {
 //             prompt("Please Enter in Valid Date");
 //         }
 // }
+=======
+        } else {
+            console.log("Please Enter in Valid Date");
+        }
+}
+>>>>>>> 088eb171b02a01466a9259b76bd9c62de0e55c8b
 
 
 $(document).ready(function() {
 	
-    
+
+
     $("#addChar").on("click", function(e) {
         console.log("hey I got clicked");
     	e.preventDefault();
@@ -45,7 +66,13 @@ $(document).ready(function() {
     	var a = $("#whatEvent").val().trim();
     	var b = $("#whenEvent").val().trim();
     	var c = $("#whereEvent").val().trim();
+    	
+    	
+    	
+    	testDate(a,b,c);
+    	
 
+<<<<<<< HEAD
     	console.log("button was clicked");
 
         //Function that checks date entered
@@ -53,6 +80,9 @@ $(document).ready(function() {
         
         
     });
+=======
+});
+>>>>>>> 088eb171b02a01466a9259b76bd9c62de0e55c8b
 
     
 

@@ -8,6 +8,10 @@
 	z-index: -1;
 }*/
 
+#map {
+      height: 400px;
+}
+
 #jumbo {
     font-family: 'Oswald', sans-serif;
     font-family: 'Fjalla One', sans-serif;
@@ -45,6 +49,15 @@ h1 {
 }
 
 #mainSearch {
+}
+
+h1 {
+    font-weight: 900;
+    color: black;
+}
+/*
+#mainsearch {
+>>>>>>> 088eb171b02a01466a9259b76bd9c62de0e55c8b
 	top: 80px;
 	font-size: 20px;
 	position: relative;
@@ -54,10 +67,16 @@ h1 {
 	border: 1px solid #000;	
 	color: black;
 	z-index: 10000;
+<<<<<<< HEAD
+=======
+
+>>>>>>> 088eb171b02a01466a9259b76bd9c62de0e55c8b
 }
+*/
+
 
 h3 {
-	 font-weight: 900;
+	font-weight: 900;
 }
 
 #whatEvent {
@@ -108,16 +127,23 @@ h3 {
     opacity: .9;
 }
 
+.container {
+	min-height: calc(100vh - 70px);
+}
+
 footer {
-    width: 100%;
-    margin-top: 760px;
+	width: 100%;
     border-top: solid;
+    margin-top: 300px;
     border-top-width: 10px;
     border-color: black;
     padding-top: 20px;
     background-color: #8C7853;
     color: white;
     text-align: center;
-    height: 60px;
     opacity: .9;
+    margin-bottom: -10px;
+  	display: block;
+  	min-height: calc(20vh - 50px);
 }
+
