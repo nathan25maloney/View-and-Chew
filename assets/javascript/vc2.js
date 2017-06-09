@@ -22,7 +22,7 @@ function updatePage(argument,what) {
 		date = dateConverter(argument[i].dates.start.localDate);
 		
 
-		btn.html(argument[i].name+"<br>"+ "Appearing on BLAH BLAH BLAH " + date +" at "+ argument[i].dates.start.localTime+"<br>"+"Location: " +argument[i]._embedded.venues[0].address.line1" at "+argument[i]._embedded.venues[0].city.name);
+		btn.html(argument[i].name+"<br>"+ "Appearing on " + date +" at "+ argument[i].dates.start.localTime+"<br>"+"Location: " +argument[i]._embedded.venues[0].address.line1+" in "+argument[i]._embedded.venues[0].city.name);
 		
 		btn.on("click", function(e) {
 	    	
