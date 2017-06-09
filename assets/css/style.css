@@ -43,11 +43,12 @@
 
 }
 
-<<<<<<< HEAD
+
 h1 {
     font-weight: 900;
     color: black;
-=======
+}
+
 #mainSearch {
 	top: 80px;
 	font-size: 20px;
@@ -58,7 +59,7 @@ h1 {
 	border: 1px solid #000;	
 	color: black;
 	z-index: 10000;
->>>>>>> d3150be50f0db3c0141fc5a473ca1a93765a9e73
+
 }
 
 h3 {
@@ -113,16 +114,11 @@ h3 {
     opacity: .9;
 }
 
-footer {
-    width: 100%;
-    margin-top: 760px;
-    border-top: solid;
-    border-top-width: 10px;
-    border-color: black;
-    padding-top: 20px;
-    background-color: #8C7853;
-    color: white;
+ 
+article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section, summary {
+    display: block;
+    background-color: #8c8080 ;
+    min-height: 50px;
     text-align: center;
-    height: 60px;
-    opacity: .9;
+    margin-bottom: -10px;
 }
