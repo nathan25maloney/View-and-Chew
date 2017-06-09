@@ -27,19 +27,32 @@ function testJS(whatArg, whenArg, whereArg) {
     document.location.href = url;
 }
 
+<<<<<<< HEAD
+// function testDate(a,b,c) {
+//     console.log("testDate");
+//     if (parseInt(d) < parseInt(b) ){
+=======
 function testDate(a,b,c) {
     var d = new Date();
     var e = new Date(b);
     console.log("Today's date to int: "+d+".  Enterred date to Int: "+e);
 
     if (d.getTime() < e.getTime() ){
+>>>>>>> 088eb171b02a01466a9259b76bd9c62de0e55c8b
 
-        testJS(a,b,c);
+//         testJS(a,b,c);
 
+<<<<<<< HEAD
+//         } else {
+//             prompt("Please Enter in Valid Date");
+//         }
+// }
+=======
         } else {
             console.log("Please Enter in Valid Date");
         }
 }
+>>>>>>> 088eb171b02a01466a9259b76bd9c62de0e55c8b
 
 
 $(document).ready(function() {
@@ -59,7 +72,17 @@ $(document).ready(function() {
     	testDate(a,b,c);
     	
 
+<<<<<<< HEAD
+    	console.log("button was clicked");
+
+        //Function that checks date entered
+        testJS(a,b,c);
+        
+        
+    });
+=======
 });
+>>>>>>> 088eb171b02a01466a9259b76bd9c62de0e55c8b
 
     
 
