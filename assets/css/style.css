@@ -9,7 +9,7 @@
 }*/
 
 #map {
-      height: 400px;
+    height: 400px;
 }
 
 #jumbo {
@@ -27,20 +27,18 @@
     height: 200px;
     color: black;
     opacity: .6;
- 
 }
 
 #background-pic {
-  min-height: 100%;
-  min-width: 1024px;
-  width: 100%;
-  height: auto;
-  position: fixed;
-  top: 0;
-  left: 0;
-  opacity: .8;
-  z-index: -1;
-
+    min-height: 100%;
+    min-width: 1024px;
+    width: 100%;
+    height: auto;
+    position: fixed;
+    top: 0;
+    left: 0;
+    opacity: .8;
+    z-index: -1;
 }
 
 h1 {
@@ -48,35 +46,20 @@ h1 {
     color: black;
 }
 
-#mainSearch {
-}
-
-h1 {
-    font-weight: 900;
-    color: black;
-}
-/*
 #mainsearch {
->>>>>>> 088eb171b02a01466a9259b76bd9c62de0e55c8b
-	top: 80px;
-	font-size: 20px;
-	position: relative;
-	overflow: auto;
-	left: 300px;
-	background: #8C7853;
-	border: 1px solid #000;	
-	color: black;
-	z-index: 10000;
-<<<<<<< HEAD
-=======
-
->>>>>>> 088eb171b02a01466a9259b76bd9c62de0e55c8b
+    top: 80px;
+    font-size: 20px;
+    position: relative;
+    overflow: auto;
+    left: 300px;
+    background: #8C7853;
+    border: 1px solid #000;
+    color: black;
+    z-index: 10000;
 }
-*/
-
 
 h3 {
-	font-weight: 900;
+    font-weight: 900;
 }
 
 #whatEvent {
@@ -127,12 +110,8 @@ h3 {
     opacity: .9;
 }
 
-.container {
-	min-height: calc(100vh - 70px);
-}
-
 footer {
-	width: 100%;
+    width: 100%;
     border-top: solid;
     margin-top: 300px;
     border-top-width: 10px;
@@ -143,7 +122,6 @@ footer {
     text-align: center;
     opacity: .9;
     margin-bottom: -10px;
-  	display: block;
-  	min-height: calc(20vh - 50px);
+    display: block;
+    min-height: calc(20vh - 50px);
 }
-

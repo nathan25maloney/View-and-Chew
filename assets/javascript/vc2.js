@@ -23,6 +23,7 @@ function updatePage(argument,what) {
 		
 
 		btn.html(argument[i].name+"<br>"+ "Appearing on " + date +" at "+ argument[i].dates.start.localTime+"<br>"+"Location: " +argument[i]._embedded.venues[0].city.name+" at "+argument[i]._embedded.venues[0].address.line1 );
+		
 		btn.on("click", function(e) {
 	    	
 	    	e.preventDefault();
@@ -181,7 +182,7 @@ function eventSearch(whatArg, whenArg, whereArg) {
 	        var marker = new google.maps.Marker({
 	          map: map,
 	          position: pos,
-	          title: 'Hello World!'
+	          label: 'The Event'
 	        });
 	        
 	        map.setCenter(pos);
@@ -217,28 +218,56 @@ function callback(results, status) {
 
 function createMarker(place,name,timeout) {
 	setTimeout(function() {
+		var photos = place.photos;
+
+		if (!photos) {
+		    return;
+		  }
+		
+
 		var placeLoc = place.geometry.location;
         
         var marker = new google.maps.Marker({
 
           map: map,
           position: placeLoc,
-          animation: google.maps.Animation.DROP
+          animation: google.maps.Animation.DROP,
+          icon: photos[0].getUrl({'maxWidth': 50, 'maxHeight': 50})
         });
-        infowindow = new google.maps.InfoWindow;
+
+
+        // infowindow = new google.maps.InfoWindow;
 
         google.maps.event.addListener(marker, 'click', function() {
-          
-          // infowindow.setContent(name);
-          // infowindow.open(map, this);
+        	console.log(marker.icon);
+        	console.log(marker);
+            marker.icon = changeSize(marker.icon);
+         
         });
 	}, timeout);
-	
-        
-
 
       }      
+function changeSize(str) {
+	
+	var ending = str.slice(-9);
+	var strHolder = str.split("/")
+	var emptyStr = "";
+	if (ending === "50-h50-k/"){
+
+		strHolder[7] = "w150-h150-k";
+		for (var i = 0; i < strHolder.length-1; i++) {
+			
+			emptyStr += strHolder[i]+"/";
+			console.log(strHolder[i]);
+			console.log(i);
+		}
+		console.log("the new String " +emptyStr);
+	}
+	return emptyStr;
+
+
   
+}  
 
  var ClickEventHandler = function(map, origin) {
         this.origin = origin;
