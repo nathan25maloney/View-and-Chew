@@ -4,10 +4,11 @@ var map;
 var infowindow;
 var location;
 
+
 function updatePage(argument,what) {
 	var name;
 	var date;
-	var time;
+    var time = argument[i].dates.start.localTime;
 	var priceMax;
 	var priceMin;
 	var address;
@@ -21,8 +22,9 @@ function updatePage(argument,what) {
 		btn.attr("id",argument[i]._embedded.venues[0].location.latitude + " "+ argument[i]._embedded.venues[0].location.longitude);
 		date = dateConverter(argument[i].dates.start.localDate);
 		
+        
 
-		btn.html(argument[i].name+"<br>"+ "Appearing on " + date +" at "+ argument[i].dates.start.localTime+"<br>"+"Location: " +argument[i]._embedded.venues[0].address.line1+" in "+argument[i]._embedded.venues[0].city.name);
+		btn.html(argument[i].name+"<br>"+ "Appearing on " + date +" at "+ time+"<br>"+"Location: " +argument[i]._embedded.venues[0].address.line1+" in "+argument[i]._embedded.venues[0].city.name);
 		
 		btn.on("click", function(e) {
 	    	
@@ -162,8 +164,31 @@ function eventSearch(whatArg, whenArg, whereArg) {
  	return date;
  }
 
+ //MILITARY TIME CONVERTER CODE///////////////////////
+ 
 
+ var hours = Number(time[0]);
+ var minutes= Number(time[1]);
+ var seconds = Number(time[2]);
+ var normTime;
 
+ function timeConverter() {
+    time.split(':');
+    if (hour > 0 && hour <= 12) {
+        normTime= "" + hour;
+    } else if (hour >12) {
+        normTime= "" + (hour - 12);
+    } else if (hour === 0) {
+        normTime= "12";
+    }
+
+    normTime += (minutes < 10) ? ":0" + minutes : ":" + minutes;
+    normTime += (seconds < 10) ? ":0" + seconds : ":" + seconds;
+    normTime += (hours >= 12) ? " P.M." : " A.M.";
+
+    console.log(normTime);
+};
+///////////////////////////////////////////////////////
 
 
   function initMap(mapLat,mapLng) {
