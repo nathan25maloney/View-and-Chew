@@ -24,8 +24,12 @@ function testJS(whatArg, whenArg, whereArg) {
         // url = 'file:///Users/saulpg/Desktop/Project/View-and-Chew/index-2.html?what=' + encodeURIComponent(a)+'&when='+encodeURIComponent(b)+'&where='+encodeURIComponent(c);
 
 
+
     document.location.href = url;
 }
+
+
+
 
 function testDate(a,b,c) {
     var d = new Date();
@@ -34,12 +38,17 @@ function testDate(a,b,c) {
 
     if (d.getTime() < e.getTime() ){
 
-        testJS(a,b,c);
+
+/        testJS(a,b,c);
+
+
+         
 
         } else {
             console.log("Please Enter in Valid Date");
         }
 }
+
 
 
 $(document).ready(function() {
@@ -59,7 +68,15 @@ $(document).ready(function() {
     	testDate(a,b,c);
     	
 
-});
+
+    	console.log("button was clicked");
+
+        //Function that checks date entered
+        testJS(a,b,c);
+        
+        
+    });
+
 
     
 
