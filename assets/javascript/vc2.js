@@ -208,7 +208,7 @@ function eventSearch(whatArg, whenArg, whereArg) {
 	        var marker = new google.maps.Marker({
 	          map: map,
 	          position: pos,
-	          label: 'Event'
+	          label: 'X'
 	        });
 	        
 	        map.setCenter(pos);
@@ -222,7 +222,7 @@ function eventSearch(whatArg, whenArg, whereArg) {
 	          radius: '3000',
 	          types: ['restaurant']
 	        };
-	        service = new google.maps.places.PlacesService(map);
+	        var service = new google.maps.places.PlacesService(map);
 	        service.nearbySearch(request, callback);
 	        var clickHandler = new ClickEventHandler(map, pos);
 		}
@@ -243,6 +243,8 @@ function callback(results, status) {
 
 
 function createMarker(place,name,timeout) {
+	 var MarkerDirectionsService = new google.maps.DirectionsService;
+     var MarkerDirectionsDisplay = new google.maps.DirectionsRenderer;
 	setTimeout(function() {
 		var photos = place.photos;
 
@@ -267,18 +269,57 @@ function createMarker(place,name,timeout) {
           // icon: photos[0].getUrl({'maxWidth': 50, 'maxHeight': 50})
         });
 
-
-        // infowindow = new google.maps.InfoWindow;
-
+        infowindow = new google.maps.InfoWindow();
+        var service = new google.maps.places.PlacesService(map);
+        console.log(place.place_id);
+        service.getDetails({
+          placeId: place.place_id
+        }, function(place, status) {
+          if (status === google.maps.places.PlacesServiceStatus.OK) {
+            
         google.maps.event.addListener(marker, 'click', function() {
-        	console.log(marker.icon);
-        	console.log("marker ",marker);
-            ClickEventHandler(map, marker.origin);
-         	// this.handleClick(this);
-        });
+              infowindow.setContent('<div><strong>' + place.name + '</strong><br>' +
+                
+                place.vicinity + '</div>');
+               marker.setPlace({
+	            placeId: place.place_id,
+	            location: place.geometry.location
+	          });
+              marker.setVisible(true);
+
+              infowindow.open(map, this);
+              calculateAndDisplayMarkerRoute(MarkerDirectionsService,MarkerDirectionsDisplay,place,pos);
+            });
+    }        
+	     }     
+        );
+         
 	}, timeout);
 
-      }      
+      }  
+
+
+
+function calculateAndDisplayMarkerRoute(directionsService, directionsDisplay, place, origin) {
+		console.log("made it to the calculateAndDisplayRoute");
+		console.log(origin);
+		console.log(place.place_id);
+        directionsService.route({
+          origin: origin,
+          destination: {placeId: place.place_id},
+          travelMode: 'DRIVING'
+        }, function(response, status) {
+          if (status === 'OK') {
+          	console.log("status is ok " +status);
+          	console.log("this is the response ",response);
+
+            directionsDisplay.setDirections(response);
+          } else {
+          	console.log('Directions request failed due to ' + status);
+            window.alert('Directions request failed due to ' + status);
+          }
+        }); 
+        }   
 
 
  var ClickEventHandler = function(map, origin) {
@@ -316,10 +357,12 @@ function createMarker(place,name,timeout) {
 
 ClickEventHandler.prototype.calculateAndDisplayRoute = function(placeId) {
         var me = this;
+        console.log(this.origin);
+        console.log({placeId: placeId});
         this.directionsService.route({
           origin: this.origin,
           destination: {placeId: placeId},
-          travelMode: 'WALKING'
+          travelMode: 'DRIVING'
         }, function(response, status) {
           if (status === 'OK') {
             me.directionsDisplay.setDirections(response);
@@ -330,6 +373,7 @@ ClickEventHandler.prototype.calculateAndDisplayRoute = function(placeId) {
       };
   ClickEventHandler.prototype.getPlaceInformation = function(placeId) {
         var me = this;
+        console.log(me);
         this.placesService.getDetails({placeId: placeId}, function(place, status) {
           if (status === 'OK') {
             me.infowindow.close();
