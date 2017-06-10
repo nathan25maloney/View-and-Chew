@@ -39,7 +39,7 @@ function testDate(a,b,c) {
     if (d.getTime() < e.getTime() ){
 
 
-/        testJS(a,b,c);
+        testJS(a,b,c);
 
 
          
