@@ -89,9 +89,9 @@ h3 {
     z-index: 10;
 }
 
-.eventButton {
-    background-color: ;
-    min-width: 720px;
+button, .eventButton {
+    
+    width: 420px;
     z-index: 10000;
 }
 
