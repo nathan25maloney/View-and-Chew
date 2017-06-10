@@ -182,7 +182,7 @@ function eventSearch(whatArg, whenArg, whereArg) {
 	        var marker = new google.maps.Marker({
 	          map: map,
 	          position: pos,
-	          label: 'The Event'
+	          label: 'Event'
 	        });
 	        
 	        map.setCenter(pos);
@@ -193,7 +193,7 @@ function eventSearch(whatArg, whenArg, whereArg) {
 	        
 	        var request = {
 	          location: pos,
-	          radius: '1500',
+	          radius: '3000',
 	          types: ['restaurant']
 	        };
 	        service = new google.maps.places.PlacesService(map);
@@ -223,16 +223,22 @@ function createMarker(place,name,timeout) {
 		if (!photos) {
 		    return;
 		  }
-		
+		var image = {
+            url: place.icon,
+            size: new google.maps.Size(71, 71),
+            origin: new google.maps.Point(0, 0),
+            anchor: new google.maps.Point(17, 34),
+            scaledSize: new google.maps.Size(25, 25)
+          };
 
 		var placeLoc = place.geometry.location;
         
         var marker = new google.maps.Marker({
-
+          icon: image,
           map: map,
           position: placeLoc,
-          animation: google.maps.Animation.DROP,
-          icon: photos[0].getUrl({'maxWidth': 50, 'maxHeight': 50})
+          animation: google.maps.Animation.DROP
+          // icon: photos[0].getUrl({'maxWidth': 50, 'maxHeight': 50})
         });
 
 
@@ -240,37 +246,19 @@ function createMarker(place,name,timeout) {
 
         google.maps.event.addListener(marker, 'click', function() {
         	console.log(marker.icon);
-        	console.log(marker);
-            marker.icon = changeSize(marker.icon);
-         
+        	console.log("marker ",marker);
+            ClickEventHandler(map, marker.origin);
+         	// this.handleClick(this);
         });
 	}, timeout);
 
       }      
-function changeSize(str) {
-	
-	var ending = str.slice(-9);
-	var strHolder = str.split("/")
-	var emptyStr = "";
-	if (ending === "50-h50-k/"){
 
-		strHolder[7] = "w150-h150-k";
-		for (var i = 0; i < strHolder.length-1; i++) {
-			
-			emptyStr += strHolder[i]+"/";
-			console.log(strHolder[i]);
-			console.log(i);
-		}
-		console.log("the new String " +emptyStr);
-	}
-	return emptyStr;
-
-
-  
-}  
 
  var ClickEventHandler = function(map, origin) {
         this.origin = origin;
+        console.log("this.origin ",this.origin);
+        console.log("origin ", origin);
         this.map = map;
         this.directionsService = new google.maps.DirectionsService;
         this.directionsDisplay = new google.maps.DirectionsRenderer;
