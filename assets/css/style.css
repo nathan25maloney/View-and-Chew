@@ -90,7 +90,7 @@ h3 {
 }
 
 .eventButton {
-
+    background-color: ;
     min-width: 420px;
     z-index: 10000;
 }
@@ -116,10 +116,14 @@ h3 {
     opacity: .9;
 }
 
+.container {
+    min-height: calc(100vh - 50px);
+}
+
 footer {
     width: 100%;
     border-top: solid;
-    margin-top: 760px;
+    margin-top: 150px;
     border-top-width: 10px;
     border-color: black;
     padding-top: 20px;
