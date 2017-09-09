@@ -115,6 +115,9 @@ button, .eventButton {
     float: left;
     opacity: .9;
 }
+.btn-default {
+    width: 100%;
+}
 
 .container {
     min-height: calc(100vh - 50px);
